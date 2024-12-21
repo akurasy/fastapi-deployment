@@ -38,7 +38,7 @@ jobs:
 
     - name: Plan Terraform
       working-directory: ./terraform
-      run: terraform plan
+      run: terraform plan -var-file=terraform.auto.tfvars
 
     - name: Apply Terraform (Auto-Approve)
       working-directory: ./terraform
