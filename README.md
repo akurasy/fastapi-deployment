@@ -124,8 +124,6 @@ Paste the load balancer url in your browser and browse your application.
 
 ![app page](./images/app-page.png)
 
-
-
 ## STEP 4: DESTROY INFRASCTRUCTURE
 To destroy this infrastruture, the terraform destroy workflow can be trigerred manually. to achieve this;
 - click on actions
