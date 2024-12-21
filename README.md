@@ -106,6 +106,7 @@ The above command Builds the Docker image and pushes it to the specified ECR rep
 
 
 **How to Trigger the Workflow**
+
 Fork or clone this repository. to clone this, use the command below;
 
 ```
