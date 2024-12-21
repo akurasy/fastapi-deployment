@@ -36,16 +36,17 @@ Before you begin, ensure you have the following prerequisites in place:
 
 2.  **A github Account**: To push this repository to github to run the necessary workflow with github runners.
 
-Fork this repository and create the following secrets for your secret key, access key and AWS region 
+**Fork this repository and create the following secrets for your deployment: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, REGION** 
+
 
 follow these steps to create a secret:
 1. Goto the application repository
 2. Goto settings
-3. on the lower left, click on secret and variables
+3. on the lower left, click on secret and variables and click actions
 4. create new repository secret
    
 
-# STEP1 (Infrastructure Provisioning) (deploy-terraform)
+# STEP1- INFRASTRUCTURE PROVISIONING (deploy-terraform)
 The workflow is divided into two jobs: deploy-terraform and build and run image. the step one will cover the contents of deploy-terraform job.
 
 in the infrascture provision, aws modules were used to have a simple, dynamic and reusable terraform script. For details on AWS ECS modules, [please visit the official terraform documentation](https://registry.terraform.io/modules/terraform-aws-modules/ecs/aws/latest)
@@ -73,5 +74,33 @@ terraform apply --auto-approve
 The terraform apply command creates a VPC, a Route Table, a NAT Gateway, Load Balancer, Security Group, ECR Repository, ECS Cluster and other object of the ECS cluster like task definition. These resources a created when this pipeline is trigerred. 
 
 
+# STEP 2 APPLICATION DEPLOYMENT (Build and Deploy Docker Image)
+The build-image job builds the FastAPI application into a Docker image, pushes it to Amazon ECR, and deploys the image to ECS.
+
+The ECR and ECS deployment key command in the pipeline:
+
+```
+docker build -t $ECR_REGISTRY/$ECR_DOCKER_IMAGE:$IMAGE_TAG .
+docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+```
+```
+aws ecs update-service \
+--cluster $ECS_CLUSTER \
+--service $ECS_SERVICE \
+--force-new-deployment
+```
+```
+echo "Waiting for ECS service to stabilize..."
+aws ecs wait services-stable \
+--cluster $ECS_CLUSTER \
+--services $ECS_SERVICE
+```
+The above command Builds the Docker image and pushes it to the specified ECR repository. Updates the ECS service with the new image version and ensures the ECS service stabilizes after deployment.
 
 
+**How to Trigger the Workflow**
+The pipeline is triggered on the following events:
+
+Manual Dispatch: Use the "Run workflow" button in GitHub Actions.
+Push to main branch: Automatically triggers when changes are pushed to the main branch.
