@@ -2,11 +2,9 @@ name: "Build fast api and push to ecr"
 
 on:
   workflow_dispatch:
+  push:
     branches:
       - main
-  # push:
-  #   branches:
-  #     - main
 
 env: 
   REGION: us-east-1
