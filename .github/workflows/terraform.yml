@@ -1,15 +1,11 @@
-name: Terraform Workflow
+name: Terraform Destroy Workflow
 
 on:
-  push:
-    branches:
-      - main
-      - staging
-  pull_request:
+  workflow_dispatch: # Allows manual triggering of this workflow
 
 jobs:
-  terraform:
-    name: Terraform Commands
+  terraform-destroy:
+    name: Destroy Terraform Infrastructure
     runs-on: ubuntu-latest
 
     steps:
@@ -31,18 +27,6 @@ jobs:
     - name: Initialize Terraform
       working-directory: ./terraform
       run: terraform init
-
-    - name: Validate Terraform
-      working-directory: ./terraform
-      run: terraform validate
-
-    - name: Plan Terraform
-      working-directory: ./terraform
-      run: terraform plan -var-file=terraform.auto.tfvars
-
-    - name: Apply Terraform (Auto-Approve)
-      working-directory: ./terraform
-      run: terraform apply -auto-approve
 
     - name: Destroy Terraform Infrastructure
       working-directory: ./terraform
