@@ -36,7 +36,7 @@ Before you begin, ensure you have the following prerequisites in place:
 
 2.  **A github Account**: To push this repository to github to run the necessary workflow with github runners.
 
-**Fork this repository and create the following secrets for your deployment: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, REGION** 
+**Fork this repository and create the following secrets for your deployment: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, REGION and give necessary permission to the IAM user.** 
 
 
 follow these steps to create a secret:
@@ -71,7 +71,7 @@ terraform fmt
 terraform apply --auto-approve
 ```
 
-The terraform apply command creates a VPC, a Route Table, a NAT Gateway, Load Balancer, Security Group, ECR Repository, ECS Cluster and other object of the ECS cluster like task definition. These resources a created when this pipeline is trigerred. 
+The terraform apply command creates a VPC, a Route Table, a NAT Gateway, Load Balancer, Security Group, ECR Repository, ECS Cluster and other object of the ECS cluster like task definition. These resources are created when this pipeline is trigerred. 
 
 
 # STEP 2 APPLICATION DEPLOYMENT (Build and Deploy Docker Image)
@@ -103,4 +103,53 @@ The above command Builds the Docker image and pushes it to the specified ECR rep
 The pipeline is triggered on the following events:
 
 Manual Dispatch: Use the "Run workflow" button in GitHub Actions.
+
 Push to main branch: Automatically triggers when changes are pushed to the main branch.
+
+## TESTING THE APPLICATI
+To view this application, goto the github repository actions to see the workflow, click on the deploy-terraform workflow, scroll down to the terraform apply step and look for the **Load Balancer DNS output** . Browse this Load Balancer url to view your application. 
+
+## STEP 4: DESTROY INFRASCTRUCTURE
+To destroy this infrastruture, the terraform destroy workflow can be trigerred manually. to achieve this;
+- click on actions
+- click on the terraform destroy workflow file
+- click on run work-flow. this will trigger the terraform destroy command. the destroy file contains the following workflow:
+
+```
+name: Terraform Destroy Workflow
+
+on:
+  workflow_dispatch: # Allows manual triggering of this workflow
+
+jobs:
+  terraform-destroy:
+    name: Destroy Terraform Infrastructure
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1 # Replace with your AWS region
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.5.7 # Replace with your Terraform version
+
+    - name: Initialize Terraform
+      working-directory: ./terraform
+      run: terraform init
+
+    - name: Destroy Terraform Infrastructure
+      working-directory: ./terraform
+      run: terraform destroy -auto-approve
+```
+
+
+## THANK YOU FOR READING THROUGH. 
