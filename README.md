@@ -38,7 +38,7 @@ Before you begin, ensure you have the following prerequisites in place:
 
 **Fork this repository and create the following secrets for your deployment: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, REGION and give necessary permission to the IAM user.** 
 
-This post will not duel much on IAM user details, to know about how to create an IAM User, AWS Acess-key and AWS Secret-key, [please visit the official AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-key-self-managed.html) for more details and guidelines. 
+This article will not discuss much on IAM user details, to know about how to create an IAM User, AWS Acess-key and AWS Secret-key, [please visit the official AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-key-self-managed.html) for more details and guidelines. 
 
 **Follow these steps to create a github secret**:
 1. Goto the application repository
