@@ -34,7 +34,7 @@ module "ecs_service" {
           cpu       = 256
           memory    = 512
           essential = true
-          image     = "${aws_ecr_repository.fast_repo.repository_url}"
+          image     = "${aws_ecr_repository.fast_repo.repository_url}:${var.image_tag}"
           port_mappings = [
             {
               name          = "poet_names"
