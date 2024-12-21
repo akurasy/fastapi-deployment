@@ -109,7 +109,12 @@ Manual Dispatch: Use the "Run workflow" button in GitHub Actions.
 
 Push to main branch: Automatically triggers when changes are pushed to the main branch.
 
-## TESTING THE APPLICATI
+![deploy page](./images/deploy.png)
+
+
+
+
+## STEP3 TESTING THE APPLICATI
 To view this application, goto the github repository actions to see the workflow, click on the deploy-terraform workflow, scroll down to the terraform apply step and look for the **Load Balancer DNS output** . Browse this Load Balancer url to view your application. 
 
 ![app page](./images/app-page.png)
