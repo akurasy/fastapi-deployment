@@ -38,6 +38,8 @@ Before you begin, ensure you have the following prerequisites in place:
 
 **Fork this repository and create the following secrets for your deployment: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, REGION and give necessary permission to the IAM user.** 
 
+This post will not duel much on IAM user details, to know about IAM useR, AWS Acess-key and AWS Secret-key creation, [please visit the official AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-key-self-managed.html)
+
 follow these steps to create a secret:
 1. Goto the application repository
 2. Goto settings
