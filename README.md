@@ -78,6 +78,7 @@ terraform apply --auto-approve
 
 The terraform apply command creates a VPC, a Route Table, a NAT Gateway, Load Balancer, Security Group, ECR Repository, ECS Cluster and other object of the ECS cluster like task definition. These resources are created when this pipeline is trigerred. 
 
+This terrform script is dynamic, the dynamic contents are inside the **terraform.auto.tfvars** in the terraform root directory. you can edit these file to suit your own preference.
 
 # STEP 2 APPLICATION DEPLOYMENT (Build and Deploy Docker Image)
 The build-image job builds the FastAPI application into a Docker image, pushes it to Amazon ECR, and deploys the image to ECS.
@@ -105,6 +106,12 @@ The above command Builds the Docker image and pushes it to the specified ECR rep
 
 
 **How to Trigger the Workflow**
+Fork or clone this repository. to clone this, use the command below;
+
+```
+git clone https://github.com/akurasy/fastapi-deployment.git
+```
+
 The pipeline is triggered on the following events:
 
 Manual Dispatch: Use the "Run workflow" button in GitHub Actions.
