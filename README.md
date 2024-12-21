@@ -109,6 +109,8 @@ Push to main branch: Automatically triggers when changes are pushed to the main 
 ## TESTING THE APPLICATI
 To view this application, goto the github repository actions to see the workflow, click on the deploy-terraform workflow, scroll down to the terraform apply step and look for the **Load Balancer DNS output** . Browse this Load Balancer url to view your application. 
 
+![app page](./images/"app page.png")
+
 ## STEP 4: DESTROY INFRASCTRUCTURE
 To destroy this infrastruture, the terraform destroy workflow can be trigerred manually. to achieve this;
 - click on actions
