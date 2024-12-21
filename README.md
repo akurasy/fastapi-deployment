@@ -38,13 +38,16 @@ Before you begin, ensure you have the following prerequisites in place:
 
 **Fork this repository and create the following secrets for your deployment: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, REGION and give necessary permission to the IAM user.** 
 
-
 follow these steps to create a secret:
 1. Goto the application repository
 2. Goto settings
 3. on the lower left, click on secret and variables and click actions
 4. create new repository secret
-   
+
+![seccret page](./images/secret1.png)
+
+
+![seccret page](./images/secret2.png)
 
 # STEP1- INFRASTRUCTURE PROVISIONING (deploy-terraform)
 The workflow is divided into two jobs: deploy-terraform and build and run image. the step one will cover the contents of deploy-terraform job.
@@ -117,6 +120,8 @@ To destroy this infrastruture, the terraform destroy workflow can be trigerred m
 - click on the terraform destroy workflow file
 - click on run work-flow. this will trigger the terraform destroy command. the destroy file contains the following workflow:
 
+![destroy page](./images/destroy-workflow.png)
+
 ```
 name: Terraform Destroy Workflow
 
@@ -152,6 +157,6 @@ jobs:
       working-directory: ./terraform
       run: terraform destroy -auto-approve
 ```
-
+![destroy2 page](./images/destroy.png)
 
 ## THANK YOU FOR READING THROUGH. 
