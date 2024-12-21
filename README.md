@@ -40,7 +40,7 @@ Before you begin, ensure you have the following prerequisites in place:
 
 This post will not duel much on IAM user details, to know about how to create an IAM User, AWS Acess-key and AWS Secret-key, [please visit the official AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-key-self-managed.html) for more details and guidelines. 
 
-follow these steps to create a secret:
+**Follow these steps to create a github secret**:
 1. Goto the application repository
 2. Goto settings
 3. on the lower left, click on secret and variables and click actions
