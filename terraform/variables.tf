@@ -54,6 +54,12 @@ variable "single_nat_gateway" {
   type        = bool
 }
 
+variable "image_tag" {
+  description = "Tag of the container image"
+  type        = string
+}
+
+
 variable "tags" {
   description = "Tags to apply to the VPC resources"
   type        = map(string)
