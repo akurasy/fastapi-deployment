@@ -28,6 +28,12 @@ The deployment consist of the following components
 
 ## Getting Started 
 
+
+**INFRASTRUCTURE**
+
+![infra page](./images/ecr-infra.png)
+
+
 ### Prerequisites
 
 Before you begin, ensure you have the following prerequisites in place:
