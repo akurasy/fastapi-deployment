@@ -2,7 +2,7 @@ name: "Build fast API and deploy to ECS"
 
 on:
   workflow_dispatch:
-#  push:
+  push:
     branches:
       - main
 
@@ -53,7 +53,7 @@ jobs:
       - name: Apply Terraform
         run: terraform apply --auto-approve
 
-  build-image:
+  build-image-and-Deploy-to-ECS:
     runs-on: ubuntu-latest
     needs: deploy-terraform
     defaults:
