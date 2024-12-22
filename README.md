@@ -86,6 +86,9 @@ The terraform apply command creates a VPC, a Route Table, a NAT Gateway, Load Ba
 
 This terrform script is dynamic, the dynamic contents are inside the **terraform.auto.tfvars** in the terraform root directory. you can edit these file to suit your own preference.
 
+![tfvars page](./images/tfvars.png)
+
+
 # STEP 2 APPLICATION DEPLOYMENT (Build and Deploy Docker Image)
 The build-image job builds the FastAPI application into a Docker image, pushes it to Amazon ECR, and deploys the image to ECS.
 
