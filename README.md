@@ -58,6 +58,10 @@ This article will not discuss much on IAM user details, to know about how to cre
 ![seccret page](./images/secret2.png)
 
 # STEP1- INFRASTRUCTURE PROVISIONING (deploy-terraform)
+To create this infrastructure, you must first create a S3 bucket backend for your terraform statefile. This backend is neccessary to help store the statefile remotely to prevent infrastructure drift and secure the infrastructure state. The bucket name must be the same as defined in the main.tf in the terraform root directory
+
+![s3 page](./images/s3.png)
+
 The workflow is divided into two jobs: deploy-terraform and build and run image. the step one will cover the contents of deploy-terraform job.
 
 in the infrascture provision, aws modules were used to have a simple, dynamic and reusable terraform script. For details on AWS ECS modules, [please visit the official terraform documentation](https://registry.terraform.io/modules/terraform-aws-modules/ecs/aws/latest)
